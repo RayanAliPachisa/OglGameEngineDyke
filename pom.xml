@@ -23,7 +23,12 @@
     </dependencyManagement>
 
     <dependencies>
-
+        <!-- https://mvnrepository.com/artifact/org.joml/joml -->
+        <dependency>
+            <groupId>org.joml</groupId>
+            <artifactId>joml</artifactId>
+            <version>1.9.25</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/exec-maven-plugin -->
         <dependency>
             <groupId>org.codehaus.mojo</groupId>

@@ -29,6 +29,7 @@ public class Window {
         switch (newScene){
             case 0:
                 currentScene = new LevelScene();
+                currentScene.init();
                 break;
             default:
                 assert false : "Unknown scene!'" + newScene + "'";
@@ -37,8 +38,8 @@ public class Window {
     }
 
     private Window(){
-        this.width = 500;
-        this.height = 500;
+        this.width = 1920;
+        this.height = 1080;
         this.title = "Dyke game engine";
     }
 
@@ -63,6 +64,7 @@ public class Window {
         glfwTerminate();
         glfwSetErrorCallback(null).free();
     }
+    boolean sceneRefreshFlag = false;
 
     private void init(){
         //Setup an error callback
@@ -77,7 +79,7 @@ public class Window {
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-        glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
+        glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 
         //Create the window
         glfwWindow = glfwCreateWindow(this.width,this.height,this.title,NULL,NULL);
@@ -106,15 +108,15 @@ public class Window {
         //LWJGL detects the context that is current in the current thread,
         //creates the GLCapabilities instance and makes the OpenGL bindings available for use
         GL.createCapabilities();
-
-
         //Making current scene
         changeScene(0);
     }
 
     private void loop() {
+
         float beginTime = Time.getTime();
         float endTime = Time.getTime();
+        glClearColor(1f,1f,1f,1f);
 
         while (!glfwWindowShouldClose(glfwWindow)){
             KeyListener.endFrame();
@@ -122,22 +124,19 @@ public class Window {
             //Poll events
             glfwPollEvents();
 
-            if(KeyListener.getKeyDown(GLFW_KEY_SPACE)){
-                System.out.println("Space key was pressed!");
-            }
 
-            glClearColor(1f,1f,1f,1f);
-            glClear(GL_COLOR_BUFFER_BIT);
-
-            glfwSwapBuffers(glfwWindow);
+            glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
             if (Time.deltaTime >= 0){
                 currentScene.update(Time.deltaTime);
             }
 
+            glfwSwapBuffers(glfwWindow);
+
             endTime = Time.getTime();
             Time.deltaTime = endTime - beginTime;
             beginTime = endTime;
+
         }
 
     }

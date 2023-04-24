@@ -1,8 +1,14 @@
 package Dyke.Game.Scene;
 
-public abstract class Scene {
+import Dyke.renderer.Camera;
 
+public abstract class Scene {
+    protected Camera camera;
     public Scene(){
+
+    }
+
+    public void init(){
 
     }
 
