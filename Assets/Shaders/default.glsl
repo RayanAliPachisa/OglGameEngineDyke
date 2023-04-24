@@ -18,13 +18,9 @@
 
     #type fragment
     #version 330 core
-        uniform float uTime;
-        uniform sampler2D TEX_SAMPLER;
-
-        in vec2 fTexCoords;
         in vec4 fColor;
         out vec4 color;
 
         void main(){
-            color = texture(TEX_SAMPLER, fTexCoords);
+            color = fColor;
         }

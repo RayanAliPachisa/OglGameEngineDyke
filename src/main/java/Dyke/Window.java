@@ -37,6 +37,10 @@ public class Window {
         }
     }
 
+    public static Scene getScene(){
+        return get().currentScene;
+    }
+
     private Window(){
         this.width = 1920;
         this.height = 1080;
