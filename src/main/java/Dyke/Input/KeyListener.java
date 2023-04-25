@@ -23,6 +23,9 @@ public class KeyListener {
 
 
     public static void keyCallback(long window, int key, int scancode, int action, int mods){
+         if(key >= get().keyPressed.length){
+             throw new RuntimeException("Key input out of range of program");
+         }
         if (action == GLFW_PRESS){
             get().keyPressed[key] = true;
             get().spike[key] = true;
@@ -33,14 +36,23 @@ public class KeyListener {
     }
     //If the key is pressed down in the current frame
     public static boolean isKeyPressed(int keyCode){
+        if(keyCode >= get().keyPressed.length){
+            throw new RuntimeException("Key input out of range of program");
+        }
         return get().keyPressed[keyCode];
     }
     //If the key was released in the current frame
     public static boolean getKeyUp(int keyCode){
+        if(keyCode >= get().keyPressed.length){
+            throw new RuntimeException("Key input out of range of program");
+        }
         return !(get().keyPressed[keyCode]) && get().spike[keyCode];
     }
     //If the key was pressed down in the current frame
     public static boolean getKeyDown(int keyCode){
+        if(keyCode >= get().keyPressed.length){
+            throw new RuntimeException("Key input out of range of program");
+        }
         return get().keyPressed[keyCode] && get().spike[keyCode];
     }
 
