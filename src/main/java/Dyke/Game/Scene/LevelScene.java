@@ -39,11 +39,11 @@ public class LevelScene extends Scene{
         this.camera = new Camera(new Vector2f());
 
         GameObject obj1 = new GameObject("Object 1", new Vector2f(100, 100), new Vector2f(256, 256));
-        obj1.addComponent(new SpriteRenderer(AssetPool.getTexture("images.png",false)));
+        obj1.addComponent(new SpriteRenderer(AssetPool.getTexture("obamaPrism.png",false)));
         this.addGameObjectToScene(obj1);
 
         GameObject obj2 = new GameObject("Object 2", new Vector2f(400, 400), new Vector2f(256, 256));
-        obj2.addComponent(new SpriteRenderer(AssetPool.getTexture("obamaSphere.jpeg",false)));
+        obj2.addComponent(new SpriteRenderer(AssetPool.getTexture("obamaSphere.png",false)));
         this.addGameObjectToScene(obj2);
 
         loadResources();
