@@ -6,6 +6,7 @@ import Dyke.GameObject.GameObject;
 import Dyke.renderer.Camera;
 import Dyke.renderer.Shader;
 import Dyke.renderer.Texture;
+import Dyke.util.AssetPool;
 import Dyke.util.Time;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
@@ -54,6 +55,12 @@ public class LevelScene extends Scene{
                 this.addGameObjectToScene(gameObject);
             }
         }
+
+        loadResources();
+    }
+
+    private void loadResources(){
+        AssetPool.getShader("default.glsl",false);
     }
 
     @Override

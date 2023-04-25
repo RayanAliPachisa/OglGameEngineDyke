@@ -12,6 +12,7 @@ import org.lwjgl.opengl.GL;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL20.GL_MAX_TEXTURE_IMAGE_UNITS;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Window {
@@ -121,7 +122,6 @@ public class Window {
         float beginTime = Time.getTime();
         float endTime = Time.getTime();
         glClearColor(1f,1f,1f,1f);
-
         while (!glfwWindowShouldClose(glfwWindow)){
             KeyListener.endFrame();
             MouseListener.endFrame();

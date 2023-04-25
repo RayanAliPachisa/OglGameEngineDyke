@@ -2,6 +2,7 @@ package Dyke.renderer;
 
 import Dyke.GameObject.Components.SpriteRenderer;
 import Dyke.Window;
+import Dyke.util.AssetPool;
 import org.joml.Vector4f;
 
 import static org.lwjgl.opengl.GL15.*;
@@ -30,8 +31,8 @@ public class RenderBatch {
     private Shader shader;
 
     public RenderBatch(int maxBatchSize){
-        shader = new Shader("assets/shaders/default.glsl");
-        shader.compile();
+        shader = AssetPool.getShader("default.glsl",false);
+
         this.sprites = new SpriteRenderer[maxBatchSize];
         this.maxBatchSize = maxBatchSize;
 
