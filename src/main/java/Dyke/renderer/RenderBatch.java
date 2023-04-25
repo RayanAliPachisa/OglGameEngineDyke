@@ -3,7 +3,12 @@ package Dyke.renderer;
 import Dyke.GameObject.Components.SpriteRenderer;
 import Dyke.Window;
 import Dyke.util.AssetPool;
+import org.joml.Vector2f;
 import org.joml.Vector4f;
+
+import javax.xml.soap.Text;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
@@ -12,23 +17,30 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 
 public class RenderBatch {
-    //For each vertex, 2 floats for pos, 4 floats for colour
+    //For each vertex, 2 floats for pos, 4 floats for colour, 2 floats for tex coords and a float for tex id
     private final int POS_SIZE = 2;
     private final int COLOUR_SIZE = 4;
+    private final int TEX_COORDS_SIZE = 2;
+    private final int TEX_ID_SIZE = 1;
 
     private final int POS_OFFSET = 0;
     private final int COLOUR_OFFSET = (POS_OFFSET + POS_SIZE) * Float.BYTES;
-    private final int VERTEX_SIZE = 6;
+    private final int TEX_COORDS_OFFSET = COLOUR_OFFSET + COLOUR_SIZE * Float.BYTES;
+    private final int TEX_ID_OFFSET = TEX_COORDS_OFFSET + TEX_COORDS_SIZE * Float.BYTES;
+    private final int VERTEX_SIZE = POS_SIZE + COLOUR_SIZE + TEX_COORDS_SIZE + TEX_ID_SIZE;
     private final int VERTEX_SIZE_BYTES = VERTEX_SIZE * Float.BYTES;
+    private final int MAX_TEXTURES = 8;
 
     private SpriteRenderer[] sprites;
     private int numSprites;
     private boolean hasRoom;
     private float[] vertices;
+    private int[] texSlots = {0,1,2,3,4,5,6,7};
 
     private int vaoID, vboID;
     private int maxBatchSize;
     private Shader shader;
+    private List<Texture> textures;
 
     public RenderBatch(int maxBatchSize){
         shader = AssetPool.getShader("default.glsl",false);
@@ -41,6 +53,7 @@ public class RenderBatch {
 
         this.numSprites = 0;
         this.hasRoom = true;
+        this.textures = new ArrayList<>();
     }
 
     public void render(){
@@ -50,16 +63,62 @@ public class RenderBatch {
         shader.use();
         shader.uploadMat4f("uProjection", Window.getScene().camera().getProjectionMatrix());
         shader.uploadMat4f("uView", Window.getScene().camera().getViewMatrix());
+        for (int i = 0; i < textures.size(); i++){
+            //Activate texture in appropriate slot
+            glActiveTexture(GL_TEXTURE0 + i + 1);
+            //Binding the relevant texture
+            textures.get(i).bind();
+        }
+        shader.uploadIntArray("uTextures", texSlots);
 
+        //Enabling the stuff to send for per vertex
         glBindVertexArray(vaoID);
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
+        glEnableVertexAttribArray(2);
+        glEnableVertexAttribArray(3);
 
         glDrawElements(GL_TRIANGLES, this.numSprites * 6, GL_UNSIGNED_INT, 0);
+
+        //Unbinding everything
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
+        glDisableVertexAttribArray(2);
+        glDisableVertexAttribArray(3);
+
+        for (int i = 0; i < textures.size(); i++){
+            //Activate texture in appropriate slot
+            glActiveTexture(GL_TEXTURE0 + i + 1);
+            //Binding the relevant texture
+            textures.get(i).unBind();
+        }
+
         glBindVertexArray(0);
         shader.detach();
+    }
+
+    public boolean checkAddSprites(SpriteRenderer spriteRenderer){
+        //Get index and add renderObject
+        int index = this.numSprites;
+        this.sprites[index] = spriteRenderer;
+        this.numSprites ++;
+
+        if(spriteRenderer.getTexture() != null){
+            if(!textures.contains(spriteRenderer.getTexture())){
+                if(textures.size() <= MAX_TEXTURES){
+                    //Textures does not contain but have space to add another texture
+                    return true;
+                }else{
+                    //Textures does not contain and no space to add another texture
+                    return false;
+                }
+            }
+            //textures contain this guy's texture so can add
+            return true;
+        }else {
+            //This guys has no texture so can add
+            return true;
+        }
     }
 
     public void addSprite(SpriteRenderer spriteRenderer){
@@ -67,6 +126,12 @@ public class RenderBatch {
         int index = this.numSprites;
         this.sprites[index] = spriteRenderer;
         this.numSprites ++;
+
+        if(spriteRenderer.getTexture() != null){
+            if(!textures.contains(spriteRenderer.getTexture())){
+                textures.add(spriteRenderer.getTexture());
+            }
+        }
 
         //Add properties to local vertices array
         loadVertexProperties(index);
@@ -80,6 +145,20 @@ public class RenderBatch {
         SpriteRenderer spriteRenderer = this.sprites[index];
         int offset = index * 4 * VERTEX_SIZE;
         Vector4f colour = spriteRenderer.colour;
+        Vector2f[] texCoords = spriteRenderer.getTexCoords();
+
+        //Finding the texture id
+        int texId = 0;
+        if (spriteRenderer.getTexture() != null){
+            for(int i = 0; i < textures.size(); i++){
+                if(textures.get(i) == spriteRenderer.getTexture()){
+                    //Making 0 a special reserved slot with no texture
+                    texId = i + 1;
+                    break;
+                }
+            }
+        }
+
 
         float xAdd = 1.0f;
         float yAdd = 1.0f;
@@ -101,6 +180,11 @@ public class RenderBatch {
             vertices[offset + 4] = colour.z;
             vertices[offset + 5] = colour.w;
 
+            //Load tex coords
+            vertices[offset + 6] = texCoords[i].x;
+            vertices[offset + 7] = texCoords[i].y;
+            //Load tex id
+            vertices[offset + 8] = texId;
             offset += VERTEX_SIZE;
         }
     }
@@ -130,6 +214,12 @@ public class RenderBatch {
         //Enable the buffer attribute pointers for the colours
         glVertexAttribPointer(1,COLOUR_SIZE, GL_FLOAT, false, VERTEX_SIZE_BYTES, COLOUR_OFFSET);
         glEnableVertexAttribArray(1);
+        //Enable the buffer attribute pointers for the colours
+        glVertexAttribPointer(2,TEX_COORDS_SIZE, GL_FLOAT, false, VERTEX_SIZE_BYTES, TEX_COORDS_OFFSET);
+        glEnableVertexAttribArray(2);
+        //Enable the buffer attribute pointers for the colours
+        glVertexAttribPointer(3,TEX_ID_SIZE, GL_FLOAT, false, VERTEX_SIZE_BYTES, TEX_ID_OFFSET);
+        glEnableVertexAttribArray(3);
     }
 
     private int[] generateIndices(){
