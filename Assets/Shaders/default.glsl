@@ -37,4 +37,8 @@
                 color = fColor;
             }
 
+            /*if (color.w <= 0.0) {
+                discard;
+            }*/
+
         }

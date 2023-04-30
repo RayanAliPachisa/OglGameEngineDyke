@@ -1,5 +1,6 @@
 package Dyke.util;
 
+import Dyke.GameObject.Components.Spritesheet;
 import Dyke.renderer.Shader;
 import Dyke.renderer.Texture;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 public class AssetPool {
     private static Map<String, Shader> shaders = new HashMap<>();
     private static Map<String, Texture> textures = new HashMap<>();
+    private static Map<String, Spritesheet> spriteSheets = new HashMap<>();
 
     public static Shader getShader(String resourceName){return getShader(resourceName, false);}
     public static Shader getShader(String resourceName, Boolean isFullPath){
@@ -51,6 +53,18 @@ public class AssetPool {
         }
     }
 
+    public static void addSpritesheet(String resourceName, Spritesheet spritesheet, boolean isFullPath) {
+        File file = new File(resourceName);
+        if (!AssetPool.spriteSheets.containsKey(file.getAbsolutePath())) {
+            AssetPool.spriteSheets.put(isFullPath ? file.getAbsolutePath() : "Assets/Textures/" + file.getAbsolutePath(), spritesheet);
+        }
+    }
 
-
+    public static Spritesheet getSpritesheet(String resourceName, boolean isFullPath){
+        File file = new File(resourceName);
+        if(!AssetPool.spriteSheets.containsKey( isFullPath ? file.getAbsolutePath() : "Assets/Textures/" + file.getAbsolutePath())){
+            assert false:"Error: Tried to access spritesheet'" + resourceName + "' and it has not been added to asserpool";
+        }
+        return spriteSheets.get(isFullPath ? file.getAbsolutePath() : "Assets/Textures/" + file.getAbsolutePath());
+    }
 }

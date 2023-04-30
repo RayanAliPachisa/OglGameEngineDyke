@@ -37,4 +37,27 @@ public class Transform extends Component{
 
     @Override
     public void update(float dt) {}
+
+    public Transform copy(){
+        Transform t = new Transform(this.parent);
+        t.position = new Vector2f(this.position);
+        t.scale = new Vector2f(this.scale);
+        return t;
+    }
+
+    public void copyTo(Transform to){
+        to.scale = new Vector2f(this.scale);
+        to.position = new Vector2f(this.position);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == null) return false;
+        if(!(o instanceof Transform)) return false;
+
+        Transform t = (Transform) o;
+
+        return (t.position.equals(this.position)) && (t.scale.equals(this.scale));
+    }
+
 }
