@@ -1,12 +1,11 @@
 package Dyke.renderer;
 
-import Dyke.GameObject.Components.SpriteRenderer;
+import Dyke.GameObject.Components.Graphical.SpriteRenderer;
 import Dyke.Window;
 import Dyke.util.AssetPool;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 
-import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,7 +110,7 @@ public class RenderBatch implements Comparable<RenderBatch>{
         for (int i = 0; i < textures.size(); i++){
             //Activate texture in appropriate slot
             glActiveTexture(GL_TEXTURE0 + i + 1);
-            //Binding the relevant texture
+            //Unbinding the relevant texture
             textures.get(i).unBind();
         }
 
@@ -120,11 +119,7 @@ public class RenderBatch implements Comparable<RenderBatch>{
     }
 
     public boolean checkAddSprites(SpriteRenderer spriteRenderer){
-        //Get index and add renderObject
-        int index = this.numSprites;
-        this.sprites[index] = spriteRenderer;
-        this.numSprites ++;
-
+        //This stupid function was accidentally adding the god-damned sprite I hate my life, god-damn bug-fixing for 1 hr for this stupid mistake
         if(spriteRenderer.getTexture() != null){
             if(!textures.contains(spriteRenderer.getTexture())){
                 if(textures.size() <= MAX_TEXTURES){
@@ -148,8 +143,8 @@ public class RenderBatch implements Comparable<RenderBatch>{
         int index = this.numSprites;
         this.sprites[index] = spriteRenderer;
         this.numSprites ++;
-
-        if(spriteRenderer.getTexture() != null){
+        //Checking that there is a texture and the texture is not a null texture
+        if(spriteRenderer.getTexture() != null && spriteRenderer.getTexture().getTexID() != -1){
             if(!textures.contains(spriteRenderer.getTexture())){
                 textures.add(spriteRenderer.getTexture());
             }
@@ -172,7 +167,7 @@ public class RenderBatch implements Comparable<RenderBatch>{
         int texId = 0;
 
         //Checking if there is no texture
-        if(spriteRenderer.getTexture().getTexID() == 0){
+        if(spriteRenderer.getTexture().getTexID() == -1){
             texId = 0;
             texCoords = spriteRenderer.getSprite().getTexCoords();
         }else{

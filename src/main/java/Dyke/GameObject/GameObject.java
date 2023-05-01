@@ -1,10 +1,8 @@
 package Dyke.GameObject;
 
 import Dyke.GameObject.Components.Component;
-import Dyke.GameObject.Components.SpriteRenderer;
 import Dyke.GameObject.Components.Transform;
 import org.joml.Vector2f;
-import org.joml.Vector4f;
 
 import java.util.ArrayList;
 import java.util.List;

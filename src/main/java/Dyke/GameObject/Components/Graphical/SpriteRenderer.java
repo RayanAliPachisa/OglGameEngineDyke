@@ -1,10 +1,12 @@
-package Dyke.GameObject.Components;
+package Dyke.GameObject.Components.Graphical;
 
+import Dyke.GameObject.Components.Component;
+import Dyke.GameObject.Components.Transform;
 import Dyke.renderer.Texture;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 
-public class SpriteRenderer extends Component{
+public class SpriteRenderer extends Component {
     private Vector4f colour;
     private Sprite sprite;
     private Vector2f[] texCoords = new Vector2f[]{};

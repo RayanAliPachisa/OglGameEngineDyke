@@ -1,4 +1,4 @@
-package Dyke.GameObject.Components;
+package Dyke.GameObject.Components.Graphical;
 
 import Dyke.renderer.Texture;
 import org.joml.Vector2f;

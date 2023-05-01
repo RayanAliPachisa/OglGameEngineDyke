@@ -26,7 +26,7 @@ public abstract class Scene {
 
     public void addGameObjectToScene(GameObject gameObject){
 
-        if(isRunning == true){
+        if(isRunning){
             //Adding new game object to renderer
             this.renderer.add(gameObject);
             //Adding gameobject to list

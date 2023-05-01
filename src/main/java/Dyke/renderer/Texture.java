@@ -16,7 +16,7 @@ public class Texture {
     public Texture(){
         //Creating null texture
         this.filePath = "";
-        texID = 0;
+        texID = -1;
         width = 0;
         height = 0;
     }

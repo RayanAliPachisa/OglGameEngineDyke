@@ -1,6 +1,6 @@
 package Dyke.util;
 
-import Dyke.GameObject.Components.Spritesheet;
+import Dyke.GameObject.Components.Graphical.Spritesheet;
 import Dyke.renderer.Shader;
 import Dyke.renderer.Texture;
 

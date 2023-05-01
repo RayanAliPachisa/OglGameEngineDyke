@@ -1,4 +1,4 @@
-package Dyke.GameObject.Components;
+package Dyke.GameObject.Components.Graphical;
 
 import Dyke.renderer.Texture;
 import org.joml.Vector2f;
@@ -12,10 +12,10 @@ public class Sprite {
     public Sprite(){
         this.texture = new Texture();
         this.texCoords = new Vector2f[]{
+                new Vector2f(1, 1),
+                new Vector2f(1, 0),
                 new Vector2f(0, 0),
-                new Vector2f(0, 0),
-                new Vector2f(0, 0),
-                new Vector2f(0, 0)
+                new Vector2f(0, 1)
         };
 
     }

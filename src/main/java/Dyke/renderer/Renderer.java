@@ -1,6 +1,6 @@
 package Dyke.renderer;
 
-import Dyke.GameObject.Components.SpriteRenderer;
+import Dyke.GameObject.Components.Graphical.SpriteRenderer;
 import Dyke.GameObject.GameObject;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package Dyke.GameObject.Components;
+package Dyke.GameObject.Components.Graphical;
 
 public class SpritesheetLine {
     int width, height, number, spacing;
