@@ -113,6 +113,11 @@ public class Window {
         //LWJGL detects the context that is current in the current thread,
         //creates the GLCapabilities instance and makes the OpenGL bindings available for use
         GL.createCapabilities();
+
+        //Enabling alpha blending
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
         //Making current scene
         changeScene(0);
     }

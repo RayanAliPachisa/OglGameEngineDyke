@@ -1,12 +1,11 @@
 package Dyke.renderer;
 
-import Dyke.GameObject.Components.SpriteRenderer;
+import Dyke.GameObject.Components.Graphical.SpriteRenderer;
 import Dyke.Window;
 import Dyke.util.AssetPool;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 
-import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 
-public class RenderBatch {
+public class RenderBatch implements Comparable<RenderBatch>{
     //For each vertex, 2 floats for pos, 4 floats for colour, 2 floats for tex coords and a float for tex id
     private final int POS_SIZE = 2;
     private final int COLOUR_SIZE = 4;
@@ -41,8 +40,14 @@ public class RenderBatch {
     private int maxBatchSize;
     private Shader shader;
     private List<Texture> textures;
+    private int zIndex;
 
     public RenderBatch(int maxBatchSize){
+        new RenderBatch(maxBatchSize, 0);
+    }
+
+    public RenderBatch(int maxBatchSize, int zIndex){
+        this.zIndex = zIndex;
         shader = AssetPool.getShader("default.glsl",false);
 
         this.sprites = new SpriteRenderer[maxBatchSize];
@@ -57,9 +62,25 @@ public class RenderBatch {
     }
 
     public void render(){
-        //Re-buffers all data every frame
-        glBindBuffer(GL_ARRAY_BUFFER, vboID);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
+        boolean rebufferData = false;
+        for (int i = 0; i < numSprites; i++){
+            SpriteRenderer spriteRenderer = sprites[i];
+            if (spriteRenderer.isDirty()){
+                rebufferData = true;
+                //refreshing properties for the dirty sprite
+                loadVertexProperties(i);
+                //Setting the dirty flag off
+                spriteRenderer.setClean();
+
+            }
+        }
+
+        if (rebufferData){
+            //Re-buffers all data every frame
+            glBindBuffer(GL_ARRAY_BUFFER, vboID);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
+        }
+
         shader.use();
         shader.uploadMat4f("uProjection", Window.getScene().camera().getProjectionMatrix());
         shader.uploadMat4f("uView", Window.getScene().camera().getViewMatrix());
@@ -89,7 +110,7 @@ public class RenderBatch {
         for (int i = 0; i < textures.size(); i++){
             //Activate texture in appropriate slot
             glActiveTexture(GL_TEXTURE0 + i + 1);
-            //Binding the relevant texture
+            //Unbinding the relevant texture
             textures.get(i).unBind();
         }
 
@@ -98,11 +119,7 @@ public class RenderBatch {
     }
 
     public boolean checkAddSprites(SpriteRenderer spriteRenderer){
-        //Get index and add renderObject
-        int index = this.numSprites;
-        this.sprites[index] = spriteRenderer;
-        this.numSprites ++;
-
+        //This stupid function was accidentally adding the god-damned sprite I hate my life, god-damn bug-fixing for 1 hr for this stupid mistake
         if(spriteRenderer.getTexture() != null){
             if(!textures.contains(spriteRenderer.getTexture())){
                 if(textures.size() <= MAX_TEXTURES){
@@ -126,8 +143,8 @@ public class RenderBatch {
         int index = this.numSprites;
         this.sprites[index] = spriteRenderer;
         this.numSprites ++;
-
-        if(spriteRenderer.getTexture() != null){
+        //Checking that there is a texture and the texture is not a null texture
+        if(spriteRenderer.getTexture() != null && spriteRenderer.getTexture().getTexID() != -1){
             if(!textures.contains(spriteRenderer.getTexture())){
                 textures.add(spriteRenderer.getTexture());
             }
@@ -141,20 +158,28 @@ public class RenderBatch {
         }
     }
 
+    //Loads each vertex property for a given sprite
     private void loadVertexProperties(int index){
         SpriteRenderer spriteRenderer = this.sprites[index];
         int offset = index * 4 * VERTEX_SIZE;
-        Vector4f colour = spriteRenderer.colour;
-        Vector2f[] texCoords = spriteRenderer.getTexCoords();
-
-        //Finding the texture id
+        Vector4f colour = spriteRenderer.getColour();
+        Vector2f[] texCoords = new Vector2f[]{};
         int texId = 0;
-        if (spriteRenderer.getTexture() != null){
-            for(int i = 0; i < textures.size(); i++){
-                if(textures.get(i) == spriteRenderer.getTexture()){
-                    //Making 0 a special reserved slot with no texture
-                    texId = i + 1;
-                    break;
+
+        //Checking if there is no texture
+        if(spriteRenderer.getTexture().getTexID() == -1){
+            texId = 0;
+            texCoords = spriteRenderer.getSprite().getTexCoords();
+        }else{
+            texCoords = spriteRenderer.getTexCoords();
+            //Finding the texture id
+            if (spriteRenderer.getTexture() != null){
+                for(int i = 0; i < textures.size(); i++){
+                    if(textures.get(i) == spriteRenderer.getTexture()){
+                        //Making 0 a special reserved slot with no texture
+                        texId = i + 1;
+                        break;
+                    }
                 }
             }
         }
@@ -249,4 +274,12 @@ public class RenderBatch {
         return hasRoom;
     }
 
+    public int getZIndex() {
+        return zIndex;
+    }
+
+    @Override
+    public int compareTo(RenderBatch o) {
+        return Integer.compare(this.getZIndex(), o.getZIndex());
+    }
 }

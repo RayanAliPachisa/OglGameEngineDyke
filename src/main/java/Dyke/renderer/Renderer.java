@@ -1,9 +1,10 @@
 package Dyke.renderer;
 
-import Dyke.GameObject.Components.SpriteRenderer;
+import Dyke.GameObject.Components.Graphical.SpriteRenderer;
 import Dyke.GameObject.GameObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Renderer {
@@ -24,17 +25,19 @@ public class Renderer {
     public void add(SpriteRenderer spriteRenderer){
         boolean added = false;
         for (RenderBatch batch: batches){
-            if (batch.hasRoom() && batch.checkAddSprites(spriteRenderer)){
+            if (batch.hasRoom() && batch.checkAddSprites(spriteRenderer) && batch.getZIndex() == spriteRenderer.parent.getZIndex()){
                 batch.addSprite(spriteRenderer);
                 added = true;
                 break;
             }
         }
         if(!added){
-            RenderBatch newBatch = new RenderBatch(MAX_BATCH_SIZE);
+            RenderBatch newBatch = new RenderBatch(MAX_BATCH_SIZE, spriteRenderer.parent.getZIndex());
             newBatch.start();
             batches.add(newBatch);
             newBatch.addSprite(spriteRenderer);
+            //Sorts every time a new batch is added
+            Collections.sort(batches);
         }
     }
 
@@ -43,4 +46,5 @@ public class Renderer {
             batch.render();
         }
     }
+
 }
