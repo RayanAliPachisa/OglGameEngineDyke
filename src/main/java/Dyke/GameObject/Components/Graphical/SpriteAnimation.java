@@ -24,13 +24,14 @@ public class SpriteAnimation{
 
     public void start(SpriteRenderer spriteRenderer) {
         if(spriteRenderer == null){
-            assert false: "The game object '" + parent.name + "' does not have a Sprite renderer";
+            assert false: "The game object does not have a Sprite renderer";
         }
-        spriteRenderer.setSprite(KEYFRAMES[frame]);
+        this.spriteRenderer = spriteRenderer;
+        this.spriteRenderer.setSprite(KEYFRAMES[frame]);
     }
 
 
-    public void update(float dt, SpriteRenderer spriteRenderer) {
+    public void update(float dt) {
         timeSinceLastChange -= dt;
         if(timeSinceLastChange <= 0f){
             timeSinceLastChange = KEYFRAME_LENGTH;

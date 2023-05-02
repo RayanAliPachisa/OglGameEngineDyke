@@ -2,12 +2,16 @@ package Dyke.Game.Scene;
 
 import Dyke.GameObject.Components.Graphical.*;
 import Dyke.GameObject.GameObject;
+import Dyke.Input.KeyListener;
 import Dyke.renderer.Camera;
 import Dyke.renderer.Shader;
 import Dyke.renderer.Texture;
 import Dyke.util.AssetPool;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
+
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_BACKSPACE;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_R;
 
 
 public class LevelScene extends Scene{
@@ -34,10 +38,8 @@ public class LevelScene extends Scene{
         sprites = AssetPool.getSpritesheet("spriteSheet.png", false);
         obj1 = new GameObject("Game Object",new Vector2f(500,250),new Vector2f(256,256),5);
         obj1.addComponent(new SpriteRenderer(sprites.sprites.get(0)));
-
-
-
-        //obj1.addComponent(new SpriteAnimation("Run",0.5f, sprites.getSublistOfSprites(0,3)));
+        obj1.addComponent(new AnimationManager(sprites.sprites.get(0)));
+        obj1.getComponent(AnimationManager.class).addAnimation(new SpriteAnimation("Run", 0.4f, sprites.getSublistOfSprites(0,3)));
         addGameObjectToScene(obj1);
 
     }
