@@ -32,6 +32,13 @@ public class LevelScene extends Scene{
         this.camera = new Camera(new Vector2f());
 
         sprites = AssetPool.getSpritesheet("spriteSheet.png", false);
+        obj1 = new GameObject("Game Object",new Vector2f(500,250),new Vector2f(256,256),5);
+        obj1.addComponent(new SpriteRenderer(sprites.sprites.get(0)));
+
+
+
+        //obj1.addComponent(new SpriteAnimation("Run",0.5f, sprites.getSublistOfSprites(0,3)));
+        addGameObjectToScene(obj1);
 
     }
 

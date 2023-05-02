@@ -3,7 +3,7 @@ package Dyke.GameObject.Components.Graphical;
 import Dyke.GameObject.Components.Component;
 import Dyke.GameObject.GameObject;
 
-public class SpriteAnimation extends Component {
+public class SpriteAnimation{
     private Sprite[] KEYFRAMES;
     private float ANIM_TIME;
     private int KEYFRAMES_NUMBER;
@@ -11,26 +11,26 @@ public class SpriteAnimation extends Component {
     private float timeSinceLastChange;
     private SpriteRenderer spriteRenderer;
     private int frame;
-    public SpriteAnimation(float animationTime, Sprite... sprites){
+    public String name;
+    public SpriteAnimation(String name, float animationTime, Sprite... sprites){
         KEYFRAMES = sprites;
         ANIM_TIME = animationTime;
         KEYFRAMES_NUMBER = KEYFRAMES.length;
         KEYFRAME_LENGTH = ANIM_TIME / (KEYFRAMES_NUMBER - 1);
+        this.name = name;
         timeSinceLastChange = KEYFRAME_LENGTH;
         frame = 0;
     }
 
-    @Override
-    public void start() {
-        if(parent.getComponent(SpriteRenderer.class) == null){
+    public void start(SpriteRenderer spriteRenderer) {
+        if(spriteRenderer == null){
             assert false: "The game object '" + parent.name + "' does not have a Sprite renderer";
         }
-        spriteRenderer = parent.getComponent(SpriteRenderer.class);
         spriteRenderer.setSprite(KEYFRAMES[frame]);
     }
 
-    @Override
-    public void update(float dt) {
+
+    public void update(float dt, SpriteRenderer spriteRenderer) {
         timeSinceLastChange -= dt;
         if(timeSinceLastChange <= 0f){
             timeSinceLastChange = KEYFRAME_LENGTH;
@@ -41,4 +41,6 @@ public class SpriteAnimation extends Component {
         }
         spriteRenderer.setSprite(KEYFRAMES[frame]);
     }
+
+
 }

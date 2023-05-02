@@ -78,4 +78,13 @@ public class Spritesheet {
             }
         }
     }
+
+    /** Returns a sprite array of the sprites in the specified sublist by order*/
+    public Sprite[] getSublistOfSprites(int startIndex, int endIndex){
+        //TODO error-catching and edge cases when you want to include all the sprites
+        Sprite[] anim = new Sprite[endIndex - startIndex];
+        anim = sprites.subList(startIndex,endIndex).toArray(anim);
+        return anim;
+    }
+
 }
