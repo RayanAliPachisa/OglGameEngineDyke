@@ -1,5 +1,6 @@
 package Dyke;
 
+import Dyke.GUI.ImGuiLayer;
 import Dyke.Game.Scene.LevelScene;
 import Dyke.Game.Scene.Scene;
 import Dyke.Input.KeyListener;
@@ -19,6 +20,7 @@ public class Window {
     private int width, height;
     private String title;
     private long glfwWindow = 0l;
+    private ImGuiLayer imGuiLayer;
 
     private static Window window = null;
 
@@ -100,6 +102,12 @@ public class Window {
         //Setting key callbacks
         glfwSetKeyCallback(glfwWindow, KeyListener::keyCallback);
 
+        //Setting window size callback
+        glfwSetWindowSizeCallback(glfwWindow, (w, xOffset, yOffset) ->{
+           Window.setWidth(xOffset);
+           Window.setHeight(yOffset);
+        });
+
         //Make OpenGL context current
         glfwMakeContextCurrent(glfwWindow);
         //Enable v-sync
@@ -117,6 +125,8 @@ public class Window {
         //Enabling alpha blending
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+        this.imGuiLayer = new ImGuiLayer(glfwWindow);
+        this.imGuiLayer.initImGui();
 
         //Making current scene
         changeScene(0);
@@ -140,6 +150,8 @@ public class Window {
                 currentScene.update(Time.deltaTime);
             }
 
+            this.imGuiLayer.update(Time.deltaTime, currentScene);
+
             glfwSwapBuffers(glfwWindow);
 
             endTime = Time.getTime();
@@ -148,5 +160,21 @@ public class Window {
 
         }
 
+    }
+
+    public static float getWidth(){
+        return get().width;
+    }
+
+    public static float getHeight(){
+        return get().height;
+    }
+
+    public static void setWidth(int newWidth){
+        get().width = newWidth;
+    }
+
+    public static void setHeight(int newHeight){
+        get().height = newHeight;
     }
 }

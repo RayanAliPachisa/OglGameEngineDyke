@@ -1,9 +1,14 @@
 package Dyke.GameObject.Components;
 
+import Dyke.GameObject.Components.Physics.TransformLinkedFloat;
 import Dyke.GameObject.GameObject;
 import org.joml.Vector2f;
 
 public class Transform extends Component{
+    public TransformLinkedFloat minX;
+    public TransformLinkedFloat minY;
+    public TransformLinkedFloat maxX;
+    public TransformLinkedFloat maxY;
     public Vector2f position;
     public Vector2f scale;
     public Transform(GameObject parent) {

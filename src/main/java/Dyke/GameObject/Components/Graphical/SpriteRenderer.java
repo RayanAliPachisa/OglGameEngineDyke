@@ -3,17 +3,18 @@ package Dyke.GameObject.Components.Graphical;
 import Dyke.GameObject.Components.Component;
 import Dyke.GameObject.Components.Transform;
 import Dyke.renderer.Texture;
+import imgui.ImGui;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 
 public class SpriteRenderer extends Component {
-    private Vector4f colour;
-    private Sprite sprite;
-    private Vector2f[] texCoords = new Vector2f[]{};
-    private Transform lastTransform;
+    Vector4f colour;
+    Sprite sprite;
+    Vector2f[] texCoords = new Vector2f[]{};
+    Transform lastTransform;
     //For dirty flagging
     //TODO when moving sprites from one batch to another, need to change the texID
-    private boolean dirty = true;
+    boolean dirty = true;
 
     public SpriteRenderer(Vector4f colour) {
         super();
@@ -84,6 +85,16 @@ public class SpriteRenderer extends Component {
         }
     }
 
+    @Override
+    public void imgui() {
+        ImGui.begin("Hi!");
+        float[] imColour = {colour.x, colour.y, colour.z, colour.w};
+        if(ImGui.colorPicker4("Colour picker", imColour)){
+            this.colour.set(imColour[0], imColour[1], imColour[2], imColour[3]);
+            dirty = true;
+        }
 
+        ImGui.end();
+    }
 
 }

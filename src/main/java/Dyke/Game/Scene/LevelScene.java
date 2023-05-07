@@ -7,6 +7,7 @@ import Dyke.renderer.Camera;
 import Dyke.renderer.Shader;
 import Dyke.renderer.Texture;
 import Dyke.util.AssetPool;
+import imgui.ImGui;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 
@@ -16,7 +17,6 @@ import static org.lwjgl.glfw.GLFW.GLFW_KEY_R;
 
 public class LevelScene extends Scene{
     float timeSinceStart = 0f;
-    float[] smootherStack = new float[]{0f,0f,0f,0f,0f,0f,0f,0f,0f,0f};
 
     private Shader defualtShader = new Shader("Assets/Shaders/default.glsl");
     private Texture testTexture;
@@ -34,14 +34,10 @@ public class LevelScene extends Scene{
         super.init();
         loadResources();
         this.camera = new Camera(new Vector2f());
-
-        sprites = AssetPool.getSpritesheet("spriteSheet.png", false);
-        obj1 = new GameObject("Game Object",new Vector2f(500,250),new Vector2f(256,256),5);
-        obj1.addComponent(new SpriteRenderer(sprites.sprites.get(0)));
-        obj1.addComponent(new AnimationManager(sprites.sprites.get(0)));
-        obj1.getComponent(AnimationManager.class).addAnimation(new SpriteAnimation("Run", 0.4f, sprites.getSublistOfSprites(0,3)));
-        addGameObjectToScene(obj1);
-
+        GameObject gb = new GameObject("Hi!", new Vector2f(500,500), new Vector2f(256,256));
+        gb.addComponent(new SpriteRenderer(new Vector4f(1,0,1,1)));
+        addGameObjectToScene(gb);
+        this.activeGameObject = gameObjects.get(0);
     }
 
     private void loadResources(){
@@ -58,10 +54,10 @@ public class LevelScene extends Scene{
 
         );
 
-        AssetPool.addSpritesheet("spriteSheet.png",
+        AssetPool.addSpritesheet("KlebV2-Sheet.png",
                 new Spritesheet(
-                        AssetPool.getTexture("spriteSheet.png",false),
-                        16,16,14,2,0
+                        AssetPool.getTexture("KlebV2-Sheet.png",false),
+                        85,85,30,1,14
                 ),
                 false
         );
@@ -71,21 +67,13 @@ public class LevelScene extends Scene{
 
     @Override
     public void update(float dt) {
-        for(int i = 0; i < smootherStack.length; i++){
-            if(i != smootherStack.length - 1){
-                smootherStack[i] = smootherStack[i+1];
-            }else{
-                smootherStack[i] = dt;
-            }
-        }
-        float sdt = 0f;
-        for(float i:smootherStack){sdt += i;}
-        sdt /= smootherStack.length;
-
-        for (GameObject gameObject: gameObjects) {
-            gameObject.update(dt);
-        }
-        this.renderer.render();
+        super.update(dt);
     }
 
+    @Override
+    public void imgui() {
+        ImGui.begin("Test Window");
+        ImGui.text("L bozo");
+        ImGui.end();
+    }
 }

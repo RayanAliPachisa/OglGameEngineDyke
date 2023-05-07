@@ -2,7 +2,6 @@ package Dyke.renderer;
 
 import org.lwjgl.BufferUtils;
 
-import javax.xml.soap.Text;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 

@@ -9,6 +9,16 @@ public abstract class Component {
 
     }
 
-    public abstract void start();
-    public abstract void update(float dt);
+    public void start(){
+
+    }
+
+
+    public void update(float dt){
+
+    }
+
+    public void imgui(){
+
+    }
 }
