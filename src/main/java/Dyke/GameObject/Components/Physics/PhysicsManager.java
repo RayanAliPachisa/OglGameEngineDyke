@@ -34,6 +34,7 @@ public class PhysicsManager {
 
         for (Collision collision: collisions) {
             collision.transform1.parent.getComponent(SpriteRenderer.class).setColour(new Vector4f(1,0,0,1));
+            collision.transform2.parent.getComponent(SpriteRenderer.class).setColour(new Vector4f(1,0,0,1));
         }
     }
 }
