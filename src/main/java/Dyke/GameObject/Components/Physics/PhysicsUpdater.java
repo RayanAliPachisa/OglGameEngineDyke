@@ -15,13 +15,6 @@ public class PhysicsUpdater extends Thread{
 
     GameObject[] gameObjects;
     ArrayList<Collision> collisions;
-    ArrayList<TransformLinkedFloat> xList = new ArrayList<TransformLinkedFloat>();
-    ArrayList<TransformLinkedFloat> yList = new ArrayList<TransformLinkedFloat>();
-    ArrayList<Transform> transforms = new ArrayList<>();
-    TransformLinkedFloat[] minMaxX = xList.toArray(new TransformLinkedFloat[xList.size()]);
-    ArrayList<TransformLinkedFloat> currentCheckX = new ArrayList<TransformLinkedFloat>();
-    TransformLinkedFloat[] minMaxY = yList.toArray(new TransformLinkedFloat[yList.size()]);
-    ArrayList<TransformLinkedFloat> currentCheckY = new ArrayList<TransformLinkedFloat>();
 
     public void prepare(GameObject[] gameObjects){
         this.gameObjects = gameObjects;
@@ -29,33 +22,9 @@ public class PhysicsUpdater extends Thread{
 
     @Override
     public void run() {
-        xList = new ArrayList<TransformLinkedFloat>();
-        yList = new ArrayList<TransformLinkedFloat>();
-        transforms = new ArrayList<>();
-
-        addingPerGameObject();
-
-        //This sort call is also lagging out the program quite a bit
-        //Sorting the lists
-        Collections.sort(xList);
-        Collections.sort(yList);
-        //Converting list to array
-        minMaxX = xList.toArray(new TransformLinkedFloat[xList.size()]);
-        currentCheckX = new ArrayList<TransformLinkedFloat>();
-        minMaxY = yList.toArray(new TransformLinkedFloat[yList.size()]);
-        currentCheckY = new ArrayList<TransformLinkedFloat>();
-        collisions = new ArrayList<Collision>();
-
-        xColls();
-        yColls();
-        registerCollisions();
-    }
-
-    public void addingPerGameObject(){
+        ArrayList<TransformLinkedFloat> xList = new ArrayList<TransformLinkedFloat>();
+        ArrayList<TransformLinkedFloat> yList = new ArrayList<TransformLinkedFloat>();
         for (GameObject gameObject: gameObjects) {
-            //Adding transform
-            transforms.add(gameObject.transform);
-
             //Adding min X
             TransformLinkedFloat minX = new TransformLinkedFloat(gameObject.transform, gameObject.transform.position.x,true);
             xList.add(minX);
@@ -77,50 +46,28 @@ public class PhysicsUpdater extends Thread{
             gameObject.transform.maxY = maxY;
 
         }
-    }
 
-    private void xColls(){
-        //Adding to XColls
+        //Sorting the list
+        Collections.sort(xList);
+        //Converting list to array
+        TransformLinkedFloat[] minMaxX = xList.toArray(new TransformLinkedFloat[xList.size()]);
+        ArrayList<TransformLinkedFloat> currentCheckY = new ArrayList<TransformLinkedFloat>();
+        collisions = new ArrayList<Collision>();
+        //TODO implement Yu Yao's technique
+        System.out.println("Length of minmaxX:" + minMaxX.length);
         for (TransformLinkedFloat f: minMaxX) {
             if(f.start){
-                f.transform.xColl = (ArrayList<TransformLinkedFloat>) currentCheckX.clone();
-                currentCheckX.add(f);
-            }else{
-                currentCheckX.remove(f.transform.minX);
-            }
-        }
-    }
-
-    private void yColls(){
-        //Adding to YColls
-        for(TransformLinkedFloat f: minMaxY){
-            if(f.start){
-                f.transform.yColl = (ArrayList<TransformLinkedFloat>) currentCheckY.clone();
-                ArrayList<Float> toCopy = new ArrayList<>();
-
-                for(TransformLinkedFloat tlf: f.transform.yColl){
-                    toCopy.add(tlf.f);
+                for (TransformLinkedFloat transform : currentCheckY) {
+                    if((f.f > transform.transform.minY.f && f.f < transform.transform.maxY.f) || (f.transform.maxY.f > transform.transform.minY.f && f.transform.maxY.f < transform.transform.maxY.f)){
+                        collisions.add(new Collision(f.transform, transform.transform));
+                    }
                 }
-                f.transform.yFloats = toCopy;
+
+
                 currentCheckY.add(f);
             }else{
-                currentCheckY.remove(f.transform.minY);
+                currentCheckY.remove(f.transform.minX);
             }
         }
     }
-
-    private void registerCollisions(){
-        //Registering collisions
-        for(Transform transform: transforms){
-            for (TransformLinkedFloat tlf: transform.xColl) {
-                //The contains method is lagging up the entire program the most
-                int index = Collections.binarySearch(transform.yFloats, tlf.transform.minY.f);
-                if(index > 0){
-                    collisions.add(new Collision(transform, tlf.transform));
-                }
-            }
-        }
-    }
-
-
 }

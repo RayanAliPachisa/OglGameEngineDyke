@@ -40,7 +40,7 @@ public class LevelScene extends Scene{
         loadResources();
         this.camera = new Camera(new Vector2f());
         for (int i = 0; i < 100000; i++) {
-            GameObject gb = new GameObject(Integer.toString(i),new Vector2f(rand.nextFloat() * 10000, rand.nextFloat() * 10000),new Vector2f(rand.nextFloat() * 10, rand.nextFloat() * 10), 0);
+            GameObject gb = new GameObject(Integer.toString(i),new Vector2f(rand.nextFloat() * 1000, rand.nextFloat() * 10000),new Vector2f(rand.nextFloat() * 10, rand.nextFloat() * 10), 0);
             gb.addComponent(new SpriteRenderer(new Vector4f(0,1,0,1)));
             gb.addComponent(new Rigidbody(gb));
             addGameObjectToScene(gb);
