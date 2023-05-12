@@ -4,45 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd4d1b3a-de50-446f-a6fb-dafea1e64a30" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Fonts/arial.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/KlebV2-Sheet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imgui.init" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GUI/ImGuiLayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/AABB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/PhysicsManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/PhysicsUpdater.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/Rigidbody.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/TransformLinkedFloat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/spriteSheet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+    <list default="true" id="cd4d1b3a-de50-446f-a6fb-dafea1e64a30" name="Changes" comment="F: Added GUI and early stage physics system(incomplete) committing so I can work on my laptop">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/Collision.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Dyke/Game/Scene/LevelScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Dyke/Game/Scene/LevelScene.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Dyke/Game/Scene/Scene.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Dyke/Game/Scene/Scene.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Dyke/GameObject/Components/Physics/PhysicsManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Dyke/GameObject/Components/Physics/PhysicsManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Dyke/GameObject/Components/Physics/PhysicsUpdater.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Dyke/GameObject/Components/Physics/PhysicsUpdater.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Dyke/GameObject/Components/Physics/Rigidbody.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Dyke/GameObject/Components/Physics/Rigidbody.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Dyke/GameObject/Components/Physics/TransformLinkedFloat.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Dyke/GameObject/Components/Physics/TransformLinkedFloat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Dyke/GameObject/Components/Transform.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Dyke/GameObject/Components/Transform.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Dyke/util/ArrayUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Dyke/util/ArrayUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/lwjgltest.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/lwjgltest.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/PhysicsManager.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/PhysicsManager.class.uniqueId0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/PhysicsUpdater.class.uniqueId1" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/PhysicsUpdater.class.uniqueId1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imgui.init" beforeDir="false" afterPath="$PROJECT_DIR$/imgui.init" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/LevelScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/LevelScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/Scene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Component.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteAnimation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/PhysicsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/PhysicsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/PhysicsUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/PhysicsUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/Rigidbody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/Rigidbody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/TransformLinkedFloat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/TransformLinkedFloat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Transform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/renderer/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/renderer/Texture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/Game/Scene/LevelScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Dyke/Game/Scene/LevelScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/SpriteAnimation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/SpriteAnimation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,17 +113,17 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/OGLGame/Assets/Fonts",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/OGLGame/Assets/Fonts&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;VisualVMLauncher&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="Dyke.GameObject.Components" />
@@ -145,7 +137,7 @@
       <recent name="C:\OGLGame\Assets\Textures" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PhysicsTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/corretto-16.0.2" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -248,7 +240,7 @@
       <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
-    <configuration name="OGLGame [wrapper]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="OGLGame [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -259,7 +251,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="wrapper" />
+            <option value="jar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -274,18 +266,18 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.PhysicsTest" />
       <item itemvalue="Gradle.Main" />
+      <item itemvalue="Gradle.OGLGame [jar]" />
       <item itemvalue="Gradle.OGLGame [buildDependents]" />
-      <item itemvalue="Gradle.OGLGame [wrapper]" />
       <item itemvalue="Gradle.OGLGame [dependencies]" />
       <item itemvalue="Gradle.OGLGame [build]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.OGLGame [jar]" />
         <item itemvalue="Application.PhysicsTest" />
         <item itemvalue="Gradle.OGLGame [dependencies]" />
         <item itemvalue="Gradle.OGLGame [build]" />
         <item itemvalue="Gradle.OGLGame [buildDependents]" />
-        <item itemvalue="Gradle.OGLGame [wrapper]" />
       </list>
     </recent_temporary>
   </component>
@@ -378,7 +370,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683032384084</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="F: Added GUI and early stage physics system(incomplete) committing so I can work on my laptop">
+      <created>1683466482170</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1683466482170</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -415,7 +414,8 @@
     <MESSAGE value="F:Spritesheets, z-indexing and blending&#10;BF:Fixed nullexception when creating a sprite without a texture" />
     <MESSAGE value="e" />
     <MESSAGE value="F: Completed animation manager, added the imgui dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="F: Completed animation manager, added the imgui dependency" />
+    <MESSAGE value="F: Added GUI and early stage physics system(incomplete) committing so I can work on my laptop" />
+    <option name="LAST_COMMIT_MESSAGE" value="F: Added GUI and early stage physics system(incomplete) committing so I can work on my laptop" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -430,41 +430,6 @@
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="22" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>
-          <line>14</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>
-          <line>12</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint enabled="true" type="java-exception">

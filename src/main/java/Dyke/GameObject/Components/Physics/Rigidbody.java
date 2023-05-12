@@ -17,7 +17,8 @@ public class Rigidbody extends Component{
         velocityY = 0;
         accelarationY = 0;
         accelerationX = 0;
-        transform = parent.getComponent(Transform.class);
+        transform = parent.transform;
+        transform.rb = this;
     }
 
 

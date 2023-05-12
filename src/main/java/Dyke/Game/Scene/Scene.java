@@ -1,5 +1,6 @@
 package Dyke.Game.Scene;
 
+import Dyke.GameObject.Components.Physics.PhysicsManager;
 import Dyke.GameObject.GameObject;
 import Dyke.renderer.Camera;
 import Dyke.renderer.Renderer;
@@ -15,6 +16,8 @@ public abstract class Scene {
     float[] smootherStack = new float[]{0f,0f,0f,0f,0f,0f,0f,0f,0f,0f};
     protected Camera camera;
     List<GameObject> gameObjects;
+    private PhysicsManager physicsManager;
+    float sdt = 0f;
     public Scene(){
         gameObjects = new ArrayList<>();
     }
@@ -25,9 +28,11 @@ public abstract class Scene {
             gameObject.onStart();
             this.renderer.add(gameObject);
         }
+        physicsManager = new PhysicsManager(this);
     }
 
     public void addGameObjectToScene(GameObject gameObject){
+        physicsManager.registerGameObject(gameObject);
 
         if(isRunning){
             //Adding new game object to renderer
@@ -53,7 +58,7 @@ public abstract class Scene {
                 smootherStack[i] = dt;
             }
         }
-        float sdt = 0f;
+
         for(float i:smootherStack){sdt += i;}
         sdt /= smootherStack.length;
 
@@ -61,6 +66,7 @@ public abstract class Scene {
             gameObject.update(dt);
         }
         this.renderer.render();
+        physicsManager.update();
     }
 
     public void sceneImgui(){

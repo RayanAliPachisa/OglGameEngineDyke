@@ -10,6 +10,7 @@ public class TransformLinkedFloat implements Comparable<TransformLinkedFloat>{
     public TransformLinkedFloat(Transform transform, float f, boolean start) {
         this.transform = transform;
         this.f = f;
+        this.start = start;
     }
 
     @Override

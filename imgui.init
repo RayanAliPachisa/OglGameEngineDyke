@@ -4,22 +4,22 @@ Size=400,400
 Collapsed=0
 
 [Window][Dear ImGui Demo]
-Pos=541,396
-Size=533,347
+Pos=1384,669
+Size=533,346
 Collapsed=0
 
 [Window][Test Window]
-Pos=1130,395
+Pos=1406,448
 Size=287,249
 Collapsed=0
 
 [Window][Inspector]
-Pos=92,395
+Pos=985,694
 Size=392,487
 Collapsed=0
 
 [Window][Hi!]
-Pos=93,9
-Size=279,342
+Pos=483,409
+Size=279,332
 Collapsed=0
 

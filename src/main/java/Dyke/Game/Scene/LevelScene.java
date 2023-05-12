@@ -1,6 +1,8 @@
 package Dyke.Game.Scene;
 
 import Dyke.GameObject.Components.Graphical.*;
+import Dyke.GameObject.Components.Physics.PhysicsManager;
+import Dyke.GameObject.Components.Physics.Rigidbody;
 import Dyke.GameObject.GameObject;
 import Dyke.Input.KeyListener;
 import Dyke.renderer.Camera;
@@ -10,6 +12,8 @@ import Dyke.util.AssetPool;
 import imgui.ImGui;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
+
+import java.util.Random;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_BACKSPACE;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_R;
@@ -32,12 +36,15 @@ public class LevelScene extends Scene{
     public void init(){
         //Calls to base class
         super.init();
+        Random rand = new Random();
         loadResources();
         this.camera = new Camera(new Vector2f());
-        GameObject gb = new GameObject("Hi!", new Vector2f(500,500), new Vector2f(256,256));
-        gb.addComponent(new SpriteRenderer(new Vector4f(1,0,1,1)));
-        addGameObjectToScene(gb);
-        this.activeGameObject = gameObjects.get(0);
+        for (int i = 0; i < 50000; i++) {
+            GameObject gb = new GameObject(Integer.toString(i),new Vector2f(rand.nextFloat() * 1000, rand.nextFloat() * 1000),new Vector2f(rand.nextFloat() * 10, rand.nextFloat() * 10), 0);
+            gb.addComponent(new SpriteRenderer(new Vector4f(0,1,0,1)));
+            gb.addComponent(new Rigidbody(gb));
+            addGameObjectToScene(gb);
+        }
     }
 
     private void loadResources(){
@@ -68,6 +75,7 @@ public class LevelScene extends Scene{
     @Override
     public void update(float dt) {
         super.update(dt);
+        System.out.println(1/sdt);
     }
 
     @Override

@@ -1,16 +1,20 @@
 package Dyke.GameObject.Components.Physics;
 
+import Dyke.GameObject.Components.Graphical.SpriteRenderer;
 import Dyke.GameObject.Components.Transform;
 import Dyke.GameObject.GameObject;
 import Dyke.util.ArrayUtil;
+import org.joml.Vector4f;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static Dyke.util.ArrayUtil.lowerBoundFloatLinkedList;
+
 public class PhysicsUpdater extends Thread{
 
     GameObject[] gameObjects;
-
+    ArrayList<Collision> collisions;
 
     public void prepare(GameObject[] gameObjects){
         this.gameObjects = gameObjects;
@@ -45,23 +49,27 @@ public class PhysicsUpdater extends Thread{
 
         //Sorting the list
         Collections.sort(xList);
-        Collections.sort(yList);
         //Converting list to array
         TransformLinkedFloat[] minMaxX = xList.toArray(new TransformLinkedFloat[xList.size()]);
-        TransformLinkedFloat[] minMaxY = yList.toArray(new TransformLinkedFloat[yList.size()]);
-        ArrayList<Transform> currentCheckY = new ArrayList<>();
-
+        ArrayList<TransformLinkedFloat> currentCheckY = new ArrayList<TransformLinkedFloat>();
+        collisions = new ArrayList<Collision>();
+        //TODO implement Yu Yao's technique
+        System.out.println("Length of minmaxX:" + minMaxX.length);
         for (TransformLinkedFloat f: minMaxX) {
             if(f.start){
-                for (Transform transform : currentCheckY) {
-                    //TODO complete this
+                TransformLinkedFloat[] toCheck = currentCheckY.toArray(new TransformLinkedFloat[]{});
+                for (TransformLinkedFloat transform : toCheck) {
+                    if((f.f > transform.transform.minY.f && f.f < transform.transform.maxY.f) || (f.transform.maxY.f > transform.transform.minY.f && f.transform.maxY.f < transform.transform.maxY.f)){
+                        collisions.add(new Collision(f.transform, transform.transform));
+                    }
                 }
 
-                currentCheckY.add(f.transform);
-            }else{
-                currentCheckY.remove(f.transform);
-            }
 
+                currentCheckY.add(f);
+                Collections.sort(currentCheckY);
+            }else{
+                currentCheckY.remove(f.transform.minX);
+            }
         }
     }
 }
