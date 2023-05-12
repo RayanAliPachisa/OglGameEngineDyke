@@ -96,6 +96,12 @@ public class PhysicsUpdater extends Thread{
         for(TransformLinkedFloat f: minMaxY){
             if(f.start){
                 f.transform.yColl = (ArrayList<TransformLinkedFloat>) currentCheckY.clone();
+                ArrayList<Float> toCopy = new ArrayList<>();
+
+                for(TransformLinkedFloat tlf: f.transform.yColl){
+                    toCopy.add(tlf.f);
+                }
+                f.transform.yFloats = toCopy;
                 currentCheckY.add(f);
             }else{
                 currentCheckY.remove(f.transform.minY);
@@ -108,7 +114,8 @@ public class PhysicsUpdater extends Thread{
         for(Transform transform: transforms){
             for (TransformLinkedFloat tlf: transform.xColl) {
                 //The contains method is lagging up the entire program the most
-                if(transform.yColl.contains(tlf.transform.minY)){
+                int index = Collections.binarySearch(transform.yFloats, tlf.transform.minY.f);
+                if(index > 0){
                     collisions.add(new Collision(transform, tlf.transform));
                 }
             }

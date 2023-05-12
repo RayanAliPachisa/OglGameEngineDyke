@@ -5,6 +5,7 @@ import Dyke.GameObject.Components.Physics.TransformLinkedFloat;
 import Dyke.GameObject.GameObject;
 import org.joml.Vector2f;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 
 public class Transform extends Component{
@@ -17,6 +18,7 @@ public class Transform extends Component{
     public Rigidbody rb;
     public ArrayList<TransformLinkedFloat> xColl;
     public ArrayList<TransformLinkedFloat> yColl;
+    public ArrayList<Float> yFloats;
     public Transform(GameObject parent) {
         super();
         transform();
