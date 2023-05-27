@@ -5,10 +5,14 @@ import Dyke.Game.Scene.LevelScene;
 import Dyke.Game.Scene.Scene;
 import Dyke.Input.KeyListener;
 import Dyke.Input.MouseListener;
+import Dyke.util.FileWindowHandler;
+import Dyke.util.RunnableWithInvokeDelay;
 import Dyke.util.Time;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
+
+import java.util.ArrayList;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -26,6 +30,12 @@ public class Window {
 
     private static int sceneIndex = -1;
     private static Scene currentScene = null;
+    private ArrayList<RunnableWithInvokeDelay> functionsToInvoke = new ArrayList<>();
+    private ArrayList<RunnableWithInvokeDelay> functionsToInvokeBuffer = new ArrayList<>();
+
+    public static void registerRunnableWithInvokeDelay(RunnableWithInvokeDelay rd){
+        get().functionsToInvokeBuffer.add(rd);
+    }
 
     public static void changeScene(int newScene){
         sceneIndex = newScene;
@@ -57,6 +67,10 @@ public class Window {
         return Window.window;
     }
 
+    public static void removeRunnableWithInvokeDelay(RunnableWithInvokeDelay runnableWithInvokeDelay) {
+        get().functionsToInvokeBuffer.remove(runnableWithInvokeDelay);
+    }
+
     public void run(){
         System.out.println("Hello LWJGL" + Version.getVersion() + "!");
 
@@ -86,7 +100,6 @@ public class Window {
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-        glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 
         //Create the window
         glfwWindow = glfwCreateWindow(this.width,this.height,this.title,NULL,NULL);
@@ -127,6 +140,7 @@ public class Window {
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
         this.imGuiLayer = new ImGuiLayer(glfwWindow);
         this.imGuiLayer.initImGui();
+        glfwMaximizeWindow(glfwWindow);
 
         //Making current scene
         changeScene(0);
@@ -151,6 +165,11 @@ public class Window {
             }
 
             this.imGuiLayer.update(Time.deltaTime, currentScene);
+
+            functionsToInvoke = (ArrayList<RunnableWithInvokeDelay>) functionsToInvokeBuffer.clone();
+            for (RunnableWithInvokeDelay rd : functionsToInvoke) {
+                rd.update(Time.deltaTime);
+            }
 
             glfwSwapBuffers(glfwWindow);
 

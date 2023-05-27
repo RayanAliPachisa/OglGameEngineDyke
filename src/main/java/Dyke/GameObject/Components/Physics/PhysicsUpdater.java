@@ -54,7 +54,6 @@ public class PhysicsUpdater extends Thread{
         ArrayList<TransformLinkedFloat> currentCheckY = new ArrayList<TransformLinkedFloat>();
         collisions = new ArrayList<Collision>();
         //TODO implement Yu Yao's technique
-        System.out.println("Length of minmaxX:" + minMaxX.length);
         for (TransformLinkedFloat f: minMaxX) {
             if(f.start){
                 for (TransformLinkedFloat transform : currentCheckY) {

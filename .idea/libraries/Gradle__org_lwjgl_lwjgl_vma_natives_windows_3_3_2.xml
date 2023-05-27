@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-vma:natives-windows:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.3.2/8db21a9f0a8a4b87f9316320c7e21964d1794b28/lwjgl-vma-3.3.2-natives-windows.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vma/3.3.2/51642bbee7075916870d72152148c1220b87082f/lwjgl-vma-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

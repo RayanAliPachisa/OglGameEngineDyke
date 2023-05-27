@@ -1,6 +1,8 @@
 package Dyke.GameObject;
 
+import Dyke.Game.Scene.Scene;
 import Dyke.GameObject.Components.Component;
+import Dyke.GameObject.Components.Graphical.SpriteRenderer;
 import Dyke.GameObject.Components.Transform;
 import org.joml.Vector2f;
 
@@ -12,6 +14,7 @@ public class GameObject {
     private List<Component> components;
     public String name;
     private int zIndex = 0;
+    public Scene currentScene;
 
     public GameObject(String name){
         init(name, new Vector2f(),new Vector2f(), 0);
@@ -73,4 +76,11 @@ public class GameObject {
     public int getZIndex() {
         return zIndex;
     }
+
+    public void changeZIndex(int zIndexL){
+        getComponent(SpriteRenderer.class).getRenderBatch().removeSprite(getComponent(SpriteRenderer.class));
+        this.zIndex = zIndexL;
+        currentScene.getRenderer().add(this);
+    }
+
 }

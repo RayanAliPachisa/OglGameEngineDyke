@@ -2,6 +2,7 @@ package Dyke.renderer;
 
 import org.lwjgl.BufferUtils;
 
+import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
@@ -57,6 +58,7 @@ public class Texture {
         }
         glBindTexture(GL_TEXTURE_2D,0);
         //Freeing memory so there's no memory leaks
+
         stbi_image_free(image);
     }
 

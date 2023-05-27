@@ -28,6 +28,7 @@ public class Renderer {
             if (batch.hasRoom() && batch.checkAddSprites(spriteRenderer) && batch.getZIndex() == spriteRenderer.parent.getZIndex()){
                 batch.addSprite(spriteRenderer);
                 added = true;
+                spriteRenderer.setRenderBatch(batch);
                 break;
             }
         }
@@ -36,8 +37,15 @@ public class Renderer {
             newBatch.start();
             batches.add(newBatch);
             newBatch.addSprite(spriteRenderer);
+            spriteRenderer.setRenderBatch(newBatch);
             //Sorts every time a new batch is added
             Collections.sort(batches);
+        }
+    }
+
+    public void changeShaderAll(String name){
+        for (RenderBatch rb: batches) {
+            rb.setShader(name);
         }
     }
 

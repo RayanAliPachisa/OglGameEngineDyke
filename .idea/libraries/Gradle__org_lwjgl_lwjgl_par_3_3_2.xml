@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-par:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-par/3.3.2/2710f4b1e06929a61c14c745467e49fc3d02ace0/lwjgl-par-3.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-par/3.3.2/5e944882b7a13a593c0d846f75057f38175a38/lwjgl-par-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-spvc:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.3.2/d2b8b1f9df3e21a005f355b0271cafc0e3784ac4/lwjgl-spvc-3.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-spvc/3.3.2/a4453e10d4c237232fe17b929158e67b37a12203/lwjgl-spvc-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

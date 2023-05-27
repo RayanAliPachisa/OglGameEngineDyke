@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-openxr:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openxr/3.3.2/590fb6a9c2f7d7e5e8bc1e6df055e7aa3f4cc1cb/lwjgl-openxr-3.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-openxr/3.3.2/8641415e48d5a8258d498993ce473d5e897f1e6f/lwjgl-openxr-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

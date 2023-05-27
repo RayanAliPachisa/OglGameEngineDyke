@@ -1,0 +1,356 @@
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+deleted file mode 100644
+--- a/.idea/jarRepositories.xml	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
++++ /dev/null	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
+@@ -1,25 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RemoteRepositoriesConfiguration">
+-    <remote-repository>
+-      <option name="id" value="central" />
+-      <option name="name" value="Maven Central repository" />
+-      <option name="url" value="https://repo1.maven.org/maven2" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="jboss.community" />
+-      <option name="name" value="JBoss Community repository" />
+-      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="MavenRepo" />
+-      <option name="name" value="MavenRepo" />
+-      <option name="url" value="https://repo.maven.apache.org/maven2/" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="BintrayJCenter" />
+-      <option name="name" value="BintrayJCenter" />
+-      <option name="url" value="https://jcenter.bintray.com/" />
+-    </remote-repository>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+--- a/.idea/misc.xml	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
++++ /dev/null	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
+@@ -1,5 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="corretto-16" project-jdk-type="JavaSDK" />
+-</project>
+\ No newline at end of file
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.name b/.idea/.name
+deleted file mode 100644
+--- a/.idea/.name	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
++++ /dev/null	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
+@@ -1,1 +0,0 @@
+-lwjgltest
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+deleted file mode 100644
+--- a/.idea/vcs.xml	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
++++ /dev/null	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+deleted file mode 100644
+--- a/.idea/compiler.xml	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
++++ /dev/null	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="CompilerConfiguration">
+-    <bytecodeTargetLevel target="16" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: src/main/java/Dyke/Game/Scene/LevelScene.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Dyke.Game.Scene;\r\n\r\nimport Dyke.GameObject.Components.Graphical.*;\r\nimport Dyke.GameObject.GameObject;\r\nimport Dyke.Input.KeyListener;\r\nimport Dyke.renderer.Camera;\r\nimport Dyke.renderer.Shader;\r\nimport Dyke.renderer.Texture;\r\nimport Dyke.util.AssetPool;\r\nimport imgui.ImGui;\r\nimport org.joml.Vector2f;\r\nimport org.joml.Vector4f;\r\n\r\nimport static org.lwjgl.glfw.GLFW.GLFW_KEY_BACKSPACE;\r\nimport static org.lwjgl.glfw.GLFW.GLFW_KEY_R;\r\n\r\n\r\npublic class LevelScene extends Scene{\r\n    float timeSinceStart = 0f;\r\n\r\n    private Shader defualtShader = new Shader(\"Assets/Shaders/default.glsl\");\r\n    private Texture testTexture;\r\n    private GameObject obj1;\r\n    private Spritesheet sprites;\r\n    public LevelScene(){\r\n        super();\r\n        System.out.println(\"Hello Scene!\");\r\n    }\r\n\r\n\r\n    @Override\r\n    public void init(){\r\n        //Calls to base class\r\n        super.init();\r\n        loadResources();\r\n        this.camera = new Camera(new Vector2f());\r\n        GameObject gb = new GameObject(\"Hi!\", new Vector2f(500,500), new Vector2f(256,256));\r\n        gb.addComponent(new SpriteRenderer(new Vector4f(1,0,1,1)));\r\n        addGameObjectToScene(gb);\r\n        this.activeGameObject = gameObjects.get(0);\r\n    }\r\n\r\n    private void loadResources(){\r\n        AssetPool.getShader(\"default.glsl\",false);\r\n\r\n        AssetPool.addSpritesheet(\"obamaPrism.png\",\r\n                new Spritesheet(\r\n                        AssetPool.getTexture(\"obamaPrism.png\",false),\r\n                        new SpritesheetLine(140, 84, 2, 20),\r\n                        new SpritesheetLine(140, 84,2, 20)\r\n                ),\r\n\r\n                false\r\n\r\n        );\r\n\r\n        AssetPool.addSpritesheet(\"KlebV2-Sheet.png\",\r\n                new Spritesheet(\r\n                        AssetPool.getTexture(\"KlebV2-Sheet.png\",false),\r\n                        85,85,30,1,14\r\n                ),\r\n                false\r\n        );\r\n\r\n\r\n    }\r\n\r\n    @Override\r\n    public void update(float dt) {\r\n        super.update(dt);\r\n    }\r\n\r\n    @Override\r\n    public void imgui() {\r\n        ImGui.begin(\"Test Window\");\r\n        ImGui.text(\"L bozo\");\r\n        ImGui.end();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Dyke/Game/Scene/LevelScene.java b/src/main/java/Dyke/Game/Scene/LevelScene.java
+--- a/src/main/java/Dyke/Game/Scene/LevelScene.java	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
++++ b/src/main/java/Dyke/Game/Scene/LevelScene.java	(date 1683612765435)
+@@ -1,6 +1,10 @@
+ package Dyke.Game.Scene;
+ 
+-import Dyke.GameObject.Components.Graphical.*;
++import Dyke.GameObject.Components.Graphical.SpriteAnimation;
++import Dyke.GameObject.Components.Graphical.SpriteRenderer;
++import Dyke.GameObject.Components.Graphical.Spritesheet;
++import Dyke.GameObject.Components.Graphical.SpritesheetLine;
++import Dyke.GameObject.Components.Graphical.AnimationManager;
+ import Dyke.GameObject.GameObject;
+ import Dyke.Input.KeyListener;
+ import Dyke.renderer.Camera;
+@@ -15,7 +19,7 @@
+ import static org.lwjgl.glfw.GLFW.GLFW_KEY_R;
+ 
+ 
+-public class LevelScene extends Scene{
++public class  LevelScene extends Scene{
+     float timeSinceStart = 0f;
+ 
+     private Shader defualtShader = new Shader("Assets/Shaders/default.glsl");
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"cd4d1b3a-de50-446f-a6fb-dafea1e64a30\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.gradle/file-system.probe\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Assets/Fonts/arial.ttf\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Assets/Textures/KlebV2-Sheet.png\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/build.gradle\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/gradlew\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/gradlew.bat\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/imgui.init\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/settings.gradle\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GUI/ImGuiLayer.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/AABB.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/PhysicsManager.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/PhysicsUpdater.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/Rigidbody.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/TransformLinkedFloat.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.gitignore\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/.name\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.name\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/compiler.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/compiler.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/jarRepositories.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/jarRepositories.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/uiDesigner.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/vcs.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Assets/Textures/spriteSheet.png\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/LevelScene.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/LevelScene.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/Scene.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/Scene.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Component.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Component.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteAnimation.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteAnimation.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteRenderer.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteRenderer.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Transform.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Transform.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/GameObject.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/GameObject/GameObject.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Dyke/Window.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/Window.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Dyke/renderer/Texture.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Dyke/renderer/Texture.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Main.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/Dyke/Game/Scene/LevelScene.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/Dyke/Game/Scene/LevelScene.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/SpriteAnimation.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/SpriteAnimation.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <task path=\"$PROJECT_DIR$\">\r\n          <activation />\r\n        </task>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"lwjgltest\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"lwjgltest\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"lwjgltest\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\r\n                <item name=\"build\" type=\"c8890929:TasksNode$1\" />\r\n              </path>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"lwjgltest\" type=\"f1a62948:ProjectNode\" />\r\n                <item name=\"Run Configurations\" type=\"7b0102dc:RunConfigurationsNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/LevelScene.java\" root0=\"SKIP_INSPECTION\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"useMavenConfig\" value=\"true\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2ONHHUhCPgAvPQlRRgqgB6uY4UI\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"last_opened_file_path\": \"C:/OGLGame/Assets/Fonts\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"settings.editor.selected.configurable\": \"preferences.pluginManager\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"Dyke.GameObject.Components\" />\r\n    </key>\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\OGLGame\\Assets\\Fonts\" />\r\n      <recent name=\"C:\\OGLGame\" />\r\n      <recent name=\"C:\\OGLGame\\Assets\\Textures\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\OGLGame\\Assets\\Textures\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.PhysicsTest\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"$USER_HOME$/.jdks/corretto-16.0.2\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"lwjgltest.main\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"PhysicsTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"PhysicsTest\" />\r\n      <module name=\"lwjgltest.test\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Main\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list />\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <ForceTestExec>false</ForceTestExec>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"OGLGame [buildDependents]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"buildDependents\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <ForceTestExec>false</ForceTestExec>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"OGLGame [build]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"build\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <ForceTestExec>false</ForceTestExec>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"OGLGame [dependencies]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" value=\"--stacktrace\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"dependencies\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <ForceTestExec>false</ForceTestExec>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"OGLGame [wrapper]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\r\n      <ExternalSystemSettings>\r\n        <option name=\"executionName\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\r\n        <option name=\"scriptParameters\" />\r\n        <option name=\"taskDescriptions\">\r\n          <list />\r\n        </option>\r\n        <option name=\"taskNames\">\r\n          <list>\r\n            <option value=\"wrapper\" />\r\n          </list>\r\n        </option>\r\n        <option name=\"vmOptions\" />\r\n      </ExternalSystemSettings>\r\n      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>\r\n      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>\r\n      <DebugAllEnabled>false</DebugAllEnabled>\r\n      <ForceTestExec>false</ForceTestExec>\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.Main\" />\r\n      <item itemvalue=\"Application.PhysicsTest\" />\r\n      <item itemvalue=\"Gradle.Main\" />\r\n      <item itemvalue=\"Gradle.OGLGame [buildDependents]\" />\r\n      <item itemvalue=\"Gradle.OGLGame [wrapper]\" />\r\n      <item itemvalue=\"Gradle.OGLGame [dependencies]\" />\r\n      <item itemvalue=\"Gradle.OGLGame [build]\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.PhysicsTest\" />\r\n        <item itemvalue=\"Gradle.OGLGame [dependencies]\" />\r\n        <item itemvalue=\"Gradle.OGLGame [build]\" />\r\n        <item itemvalue=\"Gradle.OGLGame [buildDependents]\" />\r\n        <item itemvalue=\"Gradle.OGLGame [wrapper]\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration>C:\\Users\\rayan\\AppData\\Roaming\\Subversion</configuration>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"cd4d1b3a-de50-446f-a6fb-dafea1e64a30\" name=\"Changes\" comment=\"\" />\r\n      <created>1681394038334</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1681394038334</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Initial commit\">\r\n      <created>1682135021465</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682135021465</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Rendering basic textures now supported\">\r\n      <created>1682312953033</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682312953033</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Added Asset pooling\">\r\n      <created>1682425410081</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682425410081</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Added texture batching\">\r\n      <created>1682428850131</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682428850131</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Added texture limiting per batch\">\r\n      <created>1682429871870</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682429871870</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"F:Obama sphere and Obama prism added\">\r\n      <created>1682433436906</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682433436906</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"r\">\r\n      <created>1682590991499</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682590991499</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"F:Spritesheets, z-indexing and blending&#10;BF:Fixed nullexception when creating a sprite without a texture\">\r\n      <created>1682845401913</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682845401913</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"F:Spritesheets, z-indexing and blending&#10;BF:Fixed nullexception when creating a sprite without a texture\">\r\n      <created>1682845438586</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682845438586</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"e\">\r\n      <created>1682845456167</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682845456167</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"F: Completed animation manager, added the imgui dependency\">\r\n      <created>1683032384084</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683032384084</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"12\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"Space.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"Initial commit\" />\r\n    <MESSAGE value=\"Rendering basic textures now supported\" />\r\n    <MESSAGE value=\"Added Asset pooling\" />\r\n    <MESSAGE value=\"Added texture batching\" />\r\n    <MESSAGE value=\"Added texture limiting per batch\" />\r\n    <MESSAGE value=\"F:Obama sphere and Obama prism added\" />\r\n    <MESSAGE value=\"r\" />\r\n    <MESSAGE value=\"F:Spritesheets, z-indexing and blending&#10;BF:Fixed nullexception when creating a sprite without a texture\" />\r\n    <MESSAGE value=\"e\" />\r\n    <MESSAGE value=\"F: Completed animation manager, added the imgui dependency\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"F: Completed animation manager, added the imgui dependency\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\">\r\n            <option name=\"NOTIFY_CAUGHT\" value=\"false\" />\r\n          </properties>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.ArrayIndexOutOfBoundsException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"22\" />\r\n        </breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>\r\n          <line>10</line>\r\n          <option name=\"timeStamp\" value=\"30\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>\r\n          <line>11</line>\r\n          <option name=\"timeStamp\" value=\"31\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>\r\n          <line>13</line>\r\n          <option name=\"timeStamp\" value=\"32\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>\r\n          <line>14</line>\r\n          <option name=\"timeStamp\" value=\"33\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>\r\n          <line>15</line>\r\n          <option name=\"timeStamp\" value=\"34\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>\r\n          <line>16</line>\r\n          <option name=\"timeStamp\" value=\"35\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java</url>\r\n          <line>12</line>\r\n          <option name=\"timeStamp\" value=\"36\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n      <default-breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties>\r\n            <option name=\"NOTIFY_CAUGHT\" value=\"false\" />\r\n          </properties>\r\n        </breakpoint>\r\n      </default-breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/lwjgltest$Main.ic\" NAME=\"Main Coverage Results\" MODIFIED=\"1683370296795\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
++++ b/.idea/workspace.xml	(date 1684215437755)
+@@ -4,45 +4,39 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="cd4d1b3a-de50-446f-a6fb-dafea1e64a30" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Assets/Fonts/arial.ttf" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Assets/Textures/KlebV2-Sheet.png" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/imgui.init" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GUI/ImGuiLayer.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/AABB.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/PhysicsManager.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/PhysicsUpdater.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/Rigidbody.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Physics/TransformLinkedFloat.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/Dyke/util/ArrayUtil.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Assets/Textures/spriteSheet.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
++    <list default="true" id="6b6ec729-f1b8-4677-97c3-51588d2b04ab" name="Changes" comment="Commiting so I can work on ym main PC">
++      <change beforePath="$PROJECT_DIR$/.gradle/8.1.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.1.1/checksums/checksums.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.1.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.1.1/checksums/md5-checksums.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/8.1.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.1.1/checksums/sha1-checksums.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/LevelScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/LevelScene.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/Game/Scene/Scene.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Component.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteAnimation.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Graphical/SpriteRenderer.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/Components/Transform.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/GameObject/GameObject.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/Window.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Dyke/renderer/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dyke/renderer/Texture.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/Game/Scene/LevelScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Dyke/Game/Scene/LevelScene.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/SpriteAnimation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/SpriteAnimation.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/Game/Scene/LevelScene.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/Game/Scene/Scene.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Component.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/Sprite.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/SpriteAnimation.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/SpriteRenderer.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/Spritesheet.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Graphical/SpritesheetLine.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/GameObject/Components/Transform.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/GameObject/GameObject.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/Input/KeyListener.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/Input/MouseListener.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/Window.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/renderer/Camera.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/renderer/RenderBatch.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/renderer/Renderer.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/renderer/Shader.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/renderer/Texture.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/util/AssetPool.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Dyke/util/Time.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -62,28 +56,7 @@
+         </task>
+         <projects_view>
+           <tree_state>
+-            <expand>
+-              <path>
+-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="lwjgltest" type="f1a62948:ProjectNode" />
+-              </path>
+-              <path>
+-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="lwjgltest" type="f1a62948:ProjectNode" />
+-                <item name="Tasks" type="e4a08cd1:TasksNode" />
+-              </path>
+-              <path>
+-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="lwjgltest" type="f1a62948:ProjectNode" />
+-                <item name="Tasks" type="e4a08cd1:TasksNode" />
+-                <item name="build" type="c8890929:TasksNode$1" />
+-              </path>
+-              <path>
+-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+-                <item name="lwjgltest" type="f1a62948:ProjectNode" />
+-                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+-              </path>
+-            </expand>
++            <expand />
+             <select />
+           </tree_state>
+         </projects_view>
+@@ -121,17 +94,18 @@
+   <component name="ProjectViewState">
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "ASKED_ADD_EXTERNAL_FILES": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "last_opened_file_path": "C:/OGLGame/Assets/Fonts",
+-    "project.structure.last.edited": "Project",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0",
+-    "settings.editor.selected.configurable": "preferences.pluginManager"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/OGLGame/Assets/Fonts&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CreateClassDialog.RecentsKey">
+       <recent name="Dyke.GameObject.Components" />
+@@ -147,7 +121,7 @@
+   </component>
+   <component name="RunManager" selected="Application.PhysicsTest">
+     <configuration name="Main" type="Application" factoryName="Application">
+-      <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/corretto-16.0.2" />
++      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../.jdks/corretto-16.0.2" />
+       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+       <option name="MAIN_CLASS_NAME" value="Main" />
+       <module name="lwjgltest.main" />
+@@ -179,7 +153,6 @@
+       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+       <DebugAllEnabled>false</DebugAllEnabled>
+-      <ForceTestExec>false</ForceTestExec>
+       <method v="2" />
+     </configuration>
+     <configuration name="OGLGame [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+@@ -201,7 +174,6 @@
+       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+       <DebugAllEnabled>false</DebugAllEnabled>
+-      <ForceTestExec>false</ForceTestExec>
+       <method v="2" />
+     </configuration>
+     <configuration name="OGLGame [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+@@ -223,7 +195,6 @@
+       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+       <DebugAllEnabled>false</DebugAllEnabled>
+-      <ForceTestExec>false</ForceTestExec>
+       <method v="2" />
+     </configuration>
+     <configuration name="OGLGame [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+@@ -245,7 +216,6 @@
+       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+       <DebugAllEnabled>false</DebugAllEnabled>
+-      <ForceTestExec>false</ForceTestExec>
+       <method v="2" />
+     </configuration>
+     <configuration name="OGLGame [wrapper]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+@@ -267,7 +237,6 @@
+       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+       <DebugAllEnabled>false</DebugAllEnabled>
+-      <ForceTestExec>false</ForceTestExec>
+       <method v="2" />
+     </configuration>
+     <list>
+@@ -295,7 +264,7 @@
+   </component>
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="cd4d1b3a-de50-446f-a6fb-dafea1e64a30" name="Changes" comment="" />
++      <changelist id="6b6ec729-f1b8-4677-97c3-51588d2b04ab" name="Changes" comment="Commiting so I can work on ym main PC" />
+       <created>1681394038334</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n          </set>\r\n        </option>\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 7cec678d2b2bec71e0357e399ef749ebaf72f583)
++++ b/.idea/gradle.xml	(date 1683597505863)
+@@ -4,7 +4,11 @@
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
++        <option name="delegatedBuild" value="true" />
++        <option name="testRunner" value="GRADLE" />
++        <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleJvm" value="17" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-cuda:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-cuda/3.3.2/392c82a699c7fa8cae3c4a29483a2e2ba77e435a/lwjgl-cuda-3.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-cuda/3.3.2/3d9ee72a26d74a8168adc3165bdd8e2dc5762b7f/lwjgl-cuda-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

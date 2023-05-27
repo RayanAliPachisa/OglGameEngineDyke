@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-harfbuzz:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-harfbuzz/3.3.2/314064e7d9810b1d9772ca043c62a1bd6bfae53e/lwjgl-harfbuzz-3.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-harfbuzz/3.3.2/bae39015865743330d6177f2590728a42ed91373/lwjgl-harfbuzz-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-bgfx:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-bgfx/3.3.2/d42de3985faa0e51211735c283de80425ddce2ac/lwjgl-bgfx-3.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-bgfx/3.3.2/86b61bd16dd4628e44dbcb45a8679f5ea93677e8/lwjgl-bgfx-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,5 +1,6 @@
 package Dyke.renderer;
 
+import Dyke.GameObject.Components.Graphical.Sprite;
 import Dyke.GameObject.Components.Graphical.SpriteRenderer;
 import Dyke.Window;
 import Dyke.util.AssetPool;
@@ -7,6 +8,7 @@ import org.joml.Vector2f;
 import org.joml.Vector4f;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL15.*;
@@ -48,17 +50,36 @@ public class RenderBatch implements Comparable<RenderBatch>{
 
     public RenderBatch(int maxBatchSize, int zIndex){
         this.zIndex = zIndex;
-        shader = AssetPool.getShader("default.glsl",false);
+        this.shader = AssetPool.getShader("default.glsl",false);
 
         this.sprites = new SpriteRenderer[maxBatchSize];
         this.maxBatchSize = maxBatchSize;
 
         //4 vertices per quad
-        vertices = new float[maxBatchSize * 4 * VERTEX_SIZE];
+        this.vertices = new float[maxBatchSize * 4 * VERTEX_SIZE];
 
         this.numSprites = 0;
         this.hasRoom = true;
         this.textures = new ArrayList<>();
+    }
+
+    public RenderBatch(int maxBatchSize, int zIndex, String shaderName){
+        this.zIndex = zIndex;
+        this.shader = AssetPool.getShader(shaderName,false);
+
+        this.sprites = new SpriteRenderer[maxBatchSize];
+        this.maxBatchSize = maxBatchSize;
+
+        //4 vertices per quad
+        this.vertices = new float[maxBatchSize * 4 * VERTEX_SIZE];
+
+        this.numSprites = 0;
+        this.hasRoom = true;
+        this.textures = new ArrayList<>();
+    }
+
+    public void setShader(String shader){
+        this.shader = AssetPool.getShader(shader, false);
     }
 
     public void render(){
@@ -156,6 +177,24 @@ public class RenderBatch implements Comparable<RenderBatch>{
         if(numSprites >= this.maxBatchSize){
             this.hasRoom = false;
         }
+
+        spriteRenderer.setDirty();
+    }
+
+    public void removeSprite(SpriteRenderer spriteRenderer){
+        List<SpriteRenderer> spritesL = new ArrayList<>(Arrays.asList(this.sprites));
+
+        spritesL.remove(spriteRenderer);
+        this.sprites = spritesL.toArray(this.sprites);
+        this.numSprites--;
+
+        //Reloading all the vert properties
+        for(int i = 0; i < numSprites; i++){
+            loadVertexProperties(i);
+        }
+
+        this.hasRoom = true;
+
     }
 
     //Loads each vertex property for a given sprite
@@ -165,7 +204,6 @@ public class RenderBatch implements Comparable<RenderBatch>{
         Vector4f colour = spriteRenderer.getColour();
         Vector2f[] texCoords = new Vector2f[]{};
         int texId = 0;
-
         //Checking if there is no texture
         if(spriteRenderer.getTexture().getTexID() == -1){
             texId = 0;
@@ -223,7 +261,7 @@ public class RenderBatch implements Comparable<RenderBatch>{
         vboID = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, vboID);
         //Reserving space
-        glBufferData(GL_ARRAY_BUFFER, vertices.length * Float.BYTES,
+        glBufferData(GL_ARRAY_BUFFER, this.vertices.length * Float.BYTES,
                 GL_DYNAMIC_DRAW); // indicating that vertices can change
 
         //create and upload indices buffer

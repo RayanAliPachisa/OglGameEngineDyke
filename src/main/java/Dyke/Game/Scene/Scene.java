@@ -1,5 +1,6 @@
 package Dyke.Game.Scene;
 
+import Dyke.GameObject.Components.Graphical.SpriteRenderer;
 import Dyke.GameObject.Components.Physics.PhysicsManager;
 import Dyke.GameObject.GameObject;
 import Dyke.renderer.Camera;
@@ -33,7 +34,7 @@ public abstract class Scene {
 
     public void addGameObjectToScene(GameObject gameObject){
         physicsManager.registerGameObject(gameObject);
-
+        gameObject.currentScene = this;
         if(isRunning){
             //Adding new game object to renderer
             this.renderer.add(gameObject);
@@ -44,6 +45,13 @@ public abstract class Scene {
             gameObjects.add(gameObject);
         }
 
+    }
+
+    public void removeGameObjectFromScene(GameObject gameObject){
+        SpriteRenderer spr = gameObject.getComponent(SpriteRenderer.class);
+        spr.getRenderBatch().removeSprite(spr);
+        this.gameObjects.remove(gameObject);
+        //TODO Check out gameobject from physics manager
     }
 
     public Camera camera(){
@@ -71,9 +79,7 @@ public abstract class Scene {
 
     public void sceneImgui(){
         if(activeGameObject != null){
-            ImGui.begin("Inspector");
             activeGameObject.imgui();
-            ImGui.end();
         }
 
         imgui();
@@ -81,5 +87,9 @@ public abstract class Scene {
 
     public void imgui(){
 
+    }
+
+    public Renderer getRenderer() {
+        return renderer;
     }
 }

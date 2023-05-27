@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-rpmalloc:natives-windows:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-rpmalloc/3.3.2/e25188f1f677a927c3d73cae6b65dd41805ba449/lwjgl-rpmalloc-3.3.2-natives-windows.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-rpmalloc/3.3.2/d7290b087c359231725218a32e6b95a77c6e2a70/lwjgl-rpmalloc-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

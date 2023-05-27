@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-vulkan:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vulkan/3.3.2/41471d7a812105344f9e46c924f4b7597a3a15dc/lwjgl-vulkan-3.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-vulkan/3.3.2/f3a490e8235a246ba2210bbc7bc777a7e6fb70d2/lwjgl-vulkan-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

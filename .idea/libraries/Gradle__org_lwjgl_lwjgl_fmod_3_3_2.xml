@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-fmod:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-fmod/3.3.2/ff0264fb4f442da02b269cc4bcba2979b9e2cdee/lwjgl-fmod-3.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-fmod/3.3.2/86fe63a6d8f8a33ff44e68bfe62f8bf17a0895f1/lwjgl-fmod-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

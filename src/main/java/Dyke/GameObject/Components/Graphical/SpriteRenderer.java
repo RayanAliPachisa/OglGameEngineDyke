@@ -2,6 +2,7 @@ package Dyke.GameObject.Components.Graphical;
 
 import Dyke.GameObject.Components.Component;
 import Dyke.GameObject.Components.Transform;
+import Dyke.renderer.RenderBatch;
 import Dyke.renderer.Texture;
 import imgui.ImGui;
 import org.joml.Vector2f;
@@ -10,6 +11,7 @@ import org.joml.Vector4f;
 public class SpriteRenderer extends Component {
     Vector4f colour;
     Sprite sprite;
+    private RenderBatch renderBatch;
     Vector2f[] texCoords = new Vector2f[]{};
     Transform lastTransform;
     //For dirty flagging
@@ -75,9 +77,14 @@ public class SpriteRenderer extends Component {
     public void setClean() {
         this.dirty = false;
     }
+    public void setDirty(){this.dirty = true;}
 
     @Override
     public void update(float dt) {
+        if(this.lastTransform == null){
+            this.lastTransform = parent.transform.copy();
+            return;
+        }
         if(!this.lastTransform.equals(this.parent.transform)){
             this.parent.transform.copyTo(this.lastTransform);
             //Checking if transform has changed and changing the dirty flag
@@ -97,4 +104,11 @@ public class SpriteRenderer extends Component {
         ImGui.end();
     }
 
+    public RenderBatch getRenderBatch() {
+        return renderBatch;
+    }
+
+    public void setRenderBatch(RenderBatch renderBatch) {
+        this.renderBatch = renderBatch;
+    }
 }

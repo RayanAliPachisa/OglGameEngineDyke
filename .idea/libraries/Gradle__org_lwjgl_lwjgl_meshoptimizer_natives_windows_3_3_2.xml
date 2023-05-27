@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.lwjgl:lwjgl-meshoptimizer:natives-windows:3.3.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-meshoptimizer/3.3.2/a4e2b9237fdc27348013e839e55309c1aa9e0f73/lwjgl-meshoptimizer-3.3.2-natives-windows.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.lwjgl/lwjgl-meshoptimizer/3.3.2/2b90717b06c40959064fe27c32476da3444bc99e/lwjgl-meshoptimizer-3.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

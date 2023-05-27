@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.imgui.java:natives-windows:1.76-0.9">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/io.imgui.java/natives-windows/1.76-0.9/361eadac2f9c8cffc73a99cdbecc31b62f591bbf/natives-windows-1.76-0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/io.imgui.java/natives-windows/1.76-0.9/9ec7ed632eb90a7330e1933399b5d4af7efaffed/natives-windows-1.76-0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

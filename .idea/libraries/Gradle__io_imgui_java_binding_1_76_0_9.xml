@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.imgui.java:binding:1.76-0.9">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/io.imgui.java/binding/1.76-0.9/26b8c5547da3642e214d9ace5a6c624e1ed315b7/binding-1.76-0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/io.imgui.java/binding/1.76-0.9/8bb9c051dc96c204c2996ba5588ba941b74ab1b/binding-1.76-0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
